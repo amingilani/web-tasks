@@ -1,4 +1,5 @@
-// Try me locally using: wt serve --storage-file counter.json counter.js
+// Adapted from the counter sample. This is a demo I built to track the number
+// of times someone read an email I once sent. Too quickly hacked to refactor.
 
 module.exports = function(ctx, cb) {
     // incase I need to reset the counter
