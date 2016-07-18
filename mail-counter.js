@@ -1,6 +1,11 @@
 // Adapted from the counter sample. This is a demo I built to track the number
 // of times someone read an email I once sent. Too quickly hacked to refactor.
 
+// How to use
+// 1. add an image to an email pointing to /script?increment=1
+// 2. view the number of times the email was read at /script
+// 3. reset the counter at /script?reset=1
+
 module.exports = function(ctx, cb) {
     // incase I need to reset the counter
     if (ctx.data.reset) {
