@@ -12,8 +12,7 @@ module.exports = function(ctx, cb) {
                 cb(null, data);
             });
         });
-    }
-    if (ctx.data.increment) {
+    } else if (ctx.data.increment) {
         // increment the counter if the email is read
         ctx.storage.get(function(err, data) {
             if (err) return cb(err);
