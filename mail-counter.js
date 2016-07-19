@@ -26,6 +26,8 @@ module.exports = function(ctx, cb) {
             if (!data.counter) data.counter = 0;
 
             data.counter++;
+            data.lastRead = new Date;
+
 
             ctx.storage.set(data, function(err) {
                 if (err) return cb(err);
@@ -40,17 +42,28 @@ module.exports = function(ctx, cb) {
             if (!data) data = {};
             if (!data.counter) data.counter = 0;
 
+            var options = {
+                weekday: "long", year: "numeric", month: "short",
+                day: "numeric", hour: "2-digit", minute: "2-digit"
+            };
+
             switch (data.counter) {
                 case 0:
                     response = "Hey Diego, the mail has not been read yet.";
                     break;
                 case 1:
-                    response = "Hey Diego, the mail was read once.";
+                    response = "Hey Diego, the mail was read once " +
+                    "at " +
+                    data.lastRead.toLocaleTimeString("en-us", options) +
+                    " server time";
                     break;
                 default:
                     response = "Hey Diego, the mail was read " +
                         data.counter +
-                        " times";
+                        " times. " +
+                        "Last at: " +
+                        data.lastRead.toLocaleTimeString("en-us", options) +
+                        " server time";
             }
 
             // return how many times the email has been viewed
